@@ -1,0 +1,10 @@
+1. Começar fazendo classes e defs separados. //OK
+2. Por o primeiro jogador na tela. //OK
+    2.1 Fazer movimento do primeiro jogador.
+3. Por a bolinha na tela.
+    3.1 Fazer movimento da bolinha com o primeiro jogador.
+4. Por o segundo jogador na tela.
+    4.1 Fazer movimento do segundo jogador.
+    4.2 Por barrinha no meio
+5. Por pontuação dos dois jogadores na tela.
+6. Por reset e fim de jogo.
