@@ -13,6 +13,7 @@ class PongGame:
 
     jogadorI = None
     jogadorII = None
+    ball = None
     
     def __init__(self):
         self.window_width = 800
@@ -43,23 +44,40 @@ class PongGame:
 
     def actors_update(self):
         jogadorI = self.jogadorI
+        ball = self.ball
+
+        if jogadorI.teste_colisao(ball):
+            if ball.direcao == "Esquerda_Cima":
+                ball.direcao = "Direita_Cima"
+                print("colidiu1")
+            elif ball.direcao == "Esquerda_Baixo":
+                ball.direcao = "Direita_Baixo"
+                print("colidiu2")
+            print("colidiu3")
+        
         jogadorI.movimento()
+        ball.movimento()
 
     def actors_draw(self):
         jogadorI = self.jogadorI
-        jogadorI.desenhar(self.displaysurf)
+        ball = self.ball
 
-    def loop(self):  
-        self.displaysurf.fill(WHITE)
+        jogadorI.desenhar(self.displaysurf)
+        ball.desenhar(self.displaysurf)
+
+    def loop(self):        
         self.jogadorI = Jogador.Paddle(10,150)
+        self.ball = Jogador.Ball(600,50)
         fpsclock = pygame.time.Clock()
         fps = 30
 
-        while self.run:           
+        while self.run:    
+            self.displaysurf.fill(WHITE)       
             self.handle_events()
             self.actors_draw()
             self.actors_update()
             
+            pygame.display.flip()
             pygame.display.update()  
             fpsclock.tick(fps)
 
