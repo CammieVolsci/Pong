@@ -1,4 +1,4 @@
-import pygame
+import pygame, datetime, random
 
 PLAYER_IMAGE = "assets/paddle.png"
 BALL_IMAGE = "assets/ball.png"
@@ -13,6 +13,7 @@ class Paddle(pygame.sprite.Sprite):
         self.rect = self.image.get_rect() 
         self.rect.x = x
         self.rect.y = y
+        self.pontuacao = 0
     
     def desenhar(self,screen):
         screen.blit(self.image,(self.x,self.y))
@@ -34,63 +35,37 @@ class Paddle(pygame.sprite.Sprite):
 
 class Ball:
 
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
-        self.mover_x = -2
-        self.mover_y = 2
-        self.direcao = "Esquerda_Baixo"
+    random.seed(datetime.time())  
+
+    def __init__(self):
+        self.x = random.randint(200,600) 
+        self.y = random.randint(250,550) 
+        self.mover_x = -3
+        self.mover_y = 3
         self.image = pygame.image.load(BALL_IMAGE)
         self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-
-        #x pos e y pos = direita baixo
-        #x pos e y neg = direita cima
-        #x neg e y pos = esquerda baixo
-        #x neg e y neg = esquerda cima
+        self.rect.x = self.x
+        self.rect.y = self.y
 
     def desenhar(self,screen):
         screen.blit(self.image,(self.x,self.y))
 
-    def movimento(self):
-
-        if self.direcao == "Esquerda_Cima":
-            self.mover_x = -2
-            self.mover_y = -2
-        elif self.direcao == "Esquerda_Baixo":
-            self.mover_x = -2
-            self.mover_y = 2
-        elif self.direcao == "Direita_Cima":
-            self.mover_x = -2
-            self.mover_y = 2
-        elif self.direcao == "Direita_Baixo":
-            self.mover_x = 2
-            self.mover_y = 2              
+    def movimento(self):             
         
         self.x += self.mover_x
         self.y += self.mover_y
 
         if self.x <= 0:
-            if self.direcao == "Esquerda_Cima":
-                self.direcao = "Direita_Cima"
-            elif self.direcao == "Esquerda_Baixo":
-                self.direcao = "Direita_Baixo"
+            self.x = 400
+            self.y = 325
         elif self.x >= 750:
-            if self.direcao == "Direita_Cima":
-                self.direcao = "Esquerda_Cima"
-            elif self.direcao == "Direita_Baixo":
-                self.direcao = "Esquerda_Baixo"
+            self.x = 400
+            self.y = 325
+
         if self.y <= 0:
-            if self.direcao == "Esquerda_Cima":
-                self.direcao = "Esquerda_Baixo"
-            elif self.direcao == "Direita_Cima":
-                self.direcao = "Direita_Baixo"
+            self.mover_y *= -1
         elif self.y >= 600:
-            if self.direcao == "Esquerda_Baixo":
-                self.direcao = "Esquerda_Cima"
-            elif self.direcao == "Direita_Baixo":
-                self.direcao = "Direita_Cima"
+            self.mover_y *= -1
         
         self.rect.x = self.x
         self.rect.y = self.y         

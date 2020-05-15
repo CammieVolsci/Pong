@@ -24,11 +24,14 @@ class PongGame:
 
     def handle_events(self):
         jogadorI = self.jogadorI
+        jogadorII = self.jogadorII
 
         for event in pygame.event.get():
             t = event.type
+
             if t in (KEYDOWN,KEYUP):
                 k = event.key
+
             if t == QUIT:
                 self.run = False
             elif t == KEYDOWN:
@@ -36,38 +39,47 @@ class PongGame:
                     self.run = False
                 if k == K_w:
                     jogadorI.mover = -8
-                if k == K_s:
+                elif k == K_s:
                     jogadorI.mover = 8
+                if k == K_UP:
+                    jogadorII.mover = -8
+                elif k == K_DOWN:
+                    jogadorII.mover = 8
             elif t == KEYUP:
                 if k == K_w or k == K_s:
                     jogadorI.mover = 0
+                elif k == K_UP or k== K_DOWN:
+                    jogadorII.mover = 0
 
     def actors_update(self):
         jogadorI = self.jogadorI
+        jogadorII = self.jogadorII
         ball = self.ball
 
         if jogadorI.teste_colisao(ball):
-            if ball.direcao == "Esquerda_Cima":
-                ball.direcao = "Direita_Cima"
-                print("colidiu1")
-            elif ball.direcao == "Esquerda_Baixo":
-                ball.direcao = "Direita_Baixo"
-                print("colidiu2")
-            print("colidiu3")
+            ball.mover_x *= -1
+            jogadorI.pontuacao += 1
+        elif jogadorII.teste_colisao(ball):
+            ball.mover_x *= -1
+            jogadorII.pontuacao += 1
         
         jogadorI.movimento()
+        jogadorII.movimento()
         ball.movimento()
 
     def actors_draw(self):
         jogadorI = self.jogadorI
+        jogadorII = self.jogadorII
         ball = self.ball
 
         jogadorI.desenhar(self.displaysurf)
+        jogadorII.desenhar(self.displaysurf)
         ball.desenhar(self.displaysurf)
 
     def loop(self):        
         self.jogadorI = Jogador.Paddle(10,150)
-        self.ball = Jogador.Ball(600,50)
+        self.jogadorII = Jogador.Paddle(750,150)
+        self.ball = Jogador.Ball()
         fpsclock = pygame.time.Clock()
         fps = 30
 

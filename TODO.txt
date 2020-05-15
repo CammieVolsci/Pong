@@ -3,9 +3,11 @@
     2.1 Fazer movimento do primeiro jogador. //OK
 3. Por a bolinha na tela. //OK
     3.1 Fazer colisao da bolinha com o primeiro jogador. //OK
-4. Por o segundo jogador na tela.
-    4.1 Fazer movimento do segundo jogador.
-    4.2 Fazer colisao da bolinha com o segundo jogador.
-    4.3 Por barrinha no meio
+4. Por o segundo jogador na tela. //OK
+    4.1 Fazer movimento do segundo jogador. //OK
+    4.2 Fazer colisao da bolinha com o segundo jogador. //OK
+    4.3 Fazer pontuação do primeiro jogador. //OK
+    4.4 Fazer pontuação do segundo jogador. //OK
+    4.5 Por barrinha no meio
 5. Por pontuação dos dois jogadores na tela.
 6. Por reset e fim de jogo.
