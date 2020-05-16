@@ -8,6 +8,6 @@
     4.2 Fazer colisao da bolinha com o segundo jogador. //OK
     4.3 Fazer pontuação do primeiro jogador. //OK
     4.4 Fazer pontuação do segundo jogador. //OK
-    4.5 Por barrinha no meio
-5. Por pontuação dos dois jogadores na tela.
-6. Por reset e fim de jogo.
+    4.5 Por barrinha no meio //OK
+5. Por pontuação dos dois jogadores na tela. //OK
+6. Por reset e fim de jogo. 
